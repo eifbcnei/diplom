@@ -1,0 +1,19 @@
+n = 4;
+f = 77e9;
+dlambda = 3e8 / f;
+num_tgt = 2;
+theta1 = -10;
+theta2 = 10;
+v = 10;
+sigma = 1;
+l = 1;
+rng('default')
+a = 1 / 2^0.5 * (normrnd(0,sigma, [num_tgt, 1])+normrnd(0,sigma, [num_tgt, 1])*1j);
+s1 = exp(1j*2*3.14*dlambda *(1:n)'* sin(theta1));
+s2 = exp(1j*2*3.14*dlambda *(1:n)'* sin(theta2));
+z = 1 / 2^0.5 * normrnd(0, 1, [n, 1]);
+x = a(1) * s1 + a(2) * s2 + z;
+m = sigma^2 * (eye(n) + v * s1 * s1.' + v * s2 * s2.');
+e = eig(m);
+malt = (1/l) * (x * x.');
+ealt = eig(malt);
