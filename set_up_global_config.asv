@@ -2,19 +2,16 @@ n = 16;
 dlambda = 0.5;
 num_tgt = 2;
 ang1 = -10;
-ang2 = -ang1;
+ang2 = 10;
+valid = 1;
 theta1 = deg2rad(ang1);
 theta2 = deg2rad(ang2);
-v = 10;
+v = 100;
 v1=v;v2=v;
 sigma = 1;
-l = 30;
+l = 300;
 angs = deg2rad(-30:0.01:30);
 total = 100;
 rng default;
 
-fourierthreshold = 40;
-caponthreshold = 1;
-noiseheatthreshold = 0.5;
-logger = '';
-yplot = 'b-';
+fun[] = log_progress(

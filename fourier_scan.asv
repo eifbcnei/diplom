@@ -5,7 +5,7 @@ threshold = 40;
 y = zeros([length(angs), 1]);
 
 for q = 1:total
-    logger = log_progress(q, logger, total);
+    reverseStr = log_progress(q, reverseStr, total);
     for i = 1:l
         a1 = (v1 / 2)^0.5 * (normrnd(0,sigma)+normrnd(0,sigma)*1j);
         a2 = (v2 / 2)^0.5 * (normrnd(0,sigma)+normrnd(0,sigma)*1j);
@@ -35,26 +35,26 @@ for q = 1:total
     ytest = zeros([length(angs), 1]);
     for k = 1:length(angs)
         angi = angs(k);
-        sphi = exp(1j*2*3.14*dlambda *((1:n)-1)' * sin(angi));
-        wn = inv(malt) * sphi;
-        invvalue = 1 / (wn' * eye(n) * wn);
-        y(k) =  y(k) + invvalue;
-        ytest(k) = invvalue;
+        wn = (1/ n^0.5) * exp(1j*2*3.14*dlambda *((1:n)-1)' * sin(angi));
+        y(k) =  y(k) + wn' * malt * wn;
+        ytest(k) = wn' * malt * wn;
     end
 
-    ytest(real(ytest)<noiseheatthreshold)=0;
+    ytest(real(ytest)<threshold)=0;
     [~,rtheta]=findpeaks(real(ytest), rad2deg(angs));
 
-    ltheta1(q) = rtheta(1);
-    ltheta2(q) = rtheta(2);
+    if (valid == 1)
+        ltheta1(q) = rtheta(1);
+        ltheta2(q) = rtheta(2);
+    end
 end
 y = y / total;
 figure;
-plot(rad2deg(angs), y, yplot);
-title('Heat noise')
+plot(rad2deg(angs), y, 'bx-');
+title('Fourier')
 grid on;
 
-heatnoisenorm = y ./ max(y);
+fouriernorm = y ./ max(y);
 
 meantheta1 = mean(transpose(ltheta1));
 meantheta2 = mean(transpose(ltheta2));
