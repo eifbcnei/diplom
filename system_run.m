@@ -1,0 +1,5 @@
+run('set_up_global_config.m')
+run('fourier_scan.m')
+run('capon_scan.m')
+run('heat_noise_scan.m')
+run('global_sandbox.m')
