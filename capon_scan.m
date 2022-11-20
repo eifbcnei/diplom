@@ -2,7 +2,8 @@ n = 16;
 dlambda = 0.5;
 num_tgt = 2;
 ang1 = -10;
-ang2 = 10;
+ang2 = -ang1;
+valid = 1;
 theta1 = deg2rad(ang1);
 theta2 = deg2rad(ang2);
 v = 10;
@@ -16,6 +17,8 @@ total = 100;
 ltheta1 = zeros([total, 1]);
 ltheta2 = zeros([total, 1]);
 threshold = 40;
+y = zeros([length(angs), 1]);
+
 for q = 1:total
     disp(q);
     for i = 1:l
@@ -38,28 +41,35 @@ for q = 1:total
     end
     malt = malt / l;
     ealt = eig(malt);
-
-    y = zeros([length(angs), 1]);
-    for k = 1:length(angs)
-        angi = angs(k);
-        wn = (1/ n^0.5) * exp(1j*2*3.14*dlambda *((1:n)-1)' * sin(angi));
-        y(k) =  wn' * malt * wn;
-    end
-
     if (q==1)
         scatter((ealt), zeros(size(ealt)), 'bx')
         legend('lambda', 'lambda^');
         hold off
-        figure;
-        plot(rad2deg(angs), y, 'b.');
-        grid on;
     end
-    y(real(y)<threshold)=0;
-    [~,rtheta]=findpeaks(real(y), rad2deg(angs));
 
-    ltheta1(q) = rtheta(1);
-    ltheta2(q) = rtheta(2);
+    ytest = zeros([length(angs), 1]);
+    for k = 1:length(angs)
+        angi = angs(k);
+        sphi = exp(1j*2*3.14*dlambda *((1:n)-1)' * sin(angi));
+        wn = (1 / (sphi' * inv(malt) * sphi)) * (inv(malt) * sphi);
+        y(k) =  y(k) + wn' * malt * wn;
+        ytest(k) = wn' * malt * wn;
+    end
+
+    [~,rtheta]=findpeaks(real(ytest), rad2deg(angs));
+
+    if (valid == 1)
+        ltheta1(q) = rtheta(1);
+        ltheta2(q) = rtheta(2);
+    end
 end
+y = y / total;
+figure;
+plot(rad2deg(angs), y ./ max(y), 'bx-');
+title('Capon')
+grid on;
+
+caponnorm = y ./ max(y);
 
 meantheta1 = mean(transpose(ltheta1));
 meantheta2 = mean(transpose(ltheta2));
