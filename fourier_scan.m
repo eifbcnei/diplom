@@ -3,7 +3,6 @@ ltheta1 = zeros([total, 1]);
 ltheta2 = zeros([total, 1]);
 threshold = 40;
 y = zeros([length(angs), 1]);
-valid = 1;
 
 for q = 1:total
     logger = log_progress(q, logger, total);
@@ -44,7 +43,7 @@ for q = 1:total
     ytest(real(ytest)<fourierthreshold)=0;
     [~,rtheta]=findpeaks(real(ytest), rad2deg(angs));
 
-    if (valid == 1)
+    if (fouriervalid == 1)
         ltheta1(q) = rtheta(1);
         ltheta2(q) = rtheta(2);
     end
@@ -57,8 +56,8 @@ grid on;
 
 fouriernorm = y ./ max(y);
 
-meantheta1 = mean(transpose(ltheta1));
-meantheta2 = mean(transpose(ltheta2));
+fouriermeantheta1 = mean(transpose(ltheta1));
+fouriermeantheta2 = mean(transpose(ltheta2));
 
-sigmasqrtheta1 = 1/(total-1) * sum((ltheta1-meantheta1).^2);
-sigmasqrtheta2 = 1/(total-1) * sum((ltheta2-meantheta2).^2);
+fouriersigmasqrtheta1 = 1/(total-1) * sum((ltheta1-fouriermeantheta1).^2);
+fouriersigmasqrtheta2 = 1/(total-1) * sum((ltheta2-fouriermeantheta2).^2);

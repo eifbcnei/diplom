@@ -55,8 +55,8 @@ grid on;
 
 caponnorm = y ./ max(y);
 
-meantheta1 = mean(transpose(ltheta1));
-meantheta2 = mean(transpose(ltheta2));
+caponmeantheta1 = mean(transpose(ltheta1));
+caponmeantheta2 = mean(transpose(ltheta2));
 
-sigmasqrtheta1 = 1/(total-1) * sum((ltheta1-meantheta1).^2);
-sigmasqrtheta2 = 1/(total-1) * sum((ltheta2-meantheta2).^2);
+caponsigmasqrtheta1 = 1/(total-1) * sum((ltheta1-caponmeantheta1).^2);
+caponsigmasqrtheta2 = 1/(total-1) * sum((ltheta2-caponmeantheta2).^2);

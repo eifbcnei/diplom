@@ -13,6 +13,7 @@ angs = deg2rad(-30:0.01:30);
 total = 100;
 rng default;
 
+fouriervalid = 1;
 fourierthreshold = 40;
 caponthreshold = 1;
 noiseheatthreshold = 0.5;

@@ -56,8 +56,8 @@ grid on;
 
 heatnoisenorm = y ./ max(y);
 
-meantheta1 = mean(transpose(ltheta1));
-meantheta2 = mean(transpose(ltheta2));
+heatnoisemeantheta1 = mean(transpose(ltheta1));
+heatnoisemeantheta2 = mean(transpose(ltheta2));
 
-sigmasqrtheta1 = 1/(total-1) * sum((ltheta1-meantheta1).^2);
-sigmasqrtheta2 = 1/(total-1) * sum((ltheta2-meantheta2).^2);
+heatnoisesigmasqrtheta1 = 1/(total-1) * sum((ltheta1-heatnoisemeantheta1).^2);
+heatnoisesigmasqrtheta2 = 1/(total-1) * sum((ltheta2-heatnoisemeantheta2).^2);

@@ -1,0 +1,10 @@
+fprintf('Углы: %d и %d градусов\n', ang1, ang2);
+fprintf('Фурье:\n');
+fprintf('Среднее=%.4f и %.4f\n', fouriermeantheta1, fouriermeantheta2);
+fprintf('СКО= %.4f и %.4f\n', fouriersigmasqrtheta1, fouriersigmasqrtheta2);
+fprintf('Кейпон:\n');
+fprintf('Среднее=%.4f и %.4f\n', caponmeantheta1, caponmeantheta2);
+fprintf('СКО= %.4f и %.4f\n', caponsigmasqrtheta1, caponsigmasqrtheta2);
+fprintf('Тепловой шум:\n');
+fprintf('Среднее=%.4f и %.4f\n', heatnoisemeantheta1, heatnoisemeantheta2);
+fprintf('СКО= %.4f и %.4f\n', heatnoisesigmasqrtheta1, heatnoisesigmasqrtheta2);
