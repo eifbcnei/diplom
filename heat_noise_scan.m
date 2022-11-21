@@ -42,6 +42,7 @@ for q = 1:total
         ytest(k) = invvalue;
     end
 
+    noiseheatthreshold = calculate_threshold(ytest);
     ytest(real(ytest)<noiseheatthreshold)=0;
     [~,rtheta]=findpeaks(real(ytest), rad2deg(angs));
 

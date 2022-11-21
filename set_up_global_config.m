@@ -14,8 +14,5 @@ total = 100;
 rng default;
 
 fouriervalid = 1;
-fourierthreshold = 40;
-caponthreshold = 1;
-noiseheatthreshold = 0.5;
 logger = '';
 yplot = 'b-';

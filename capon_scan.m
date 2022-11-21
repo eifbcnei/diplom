@@ -41,6 +41,7 @@ for q = 1:total
         ytest(k) = wn' * malt * wn;
     end
 
+    caponthreshold = calculate_threshold(ytest);
     ytest(real(ytest)<caponthreshold)=0;
     [~,rtheta]=findpeaks(real(ytest), rad2deg(angs));
 

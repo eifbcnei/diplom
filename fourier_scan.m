@@ -40,6 +40,7 @@ for q = 1:total
         ytest(k) = wn' * malt * wn;
     end
 
+    fourierthreshold = calculate_threshold(ytest);
     ytest(real(ytest)<fourierthreshold)=0;
     [~,rtheta]=findpeaks(real(ytest), rad2deg(angs));
 
