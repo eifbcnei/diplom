@@ -50,15 +50,17 @@ for q = 1:total
     ltheta2(q) = rtheta(2);
 end
 y = y / total;
-figure;
-plot(rad2deg(angs), y, yplot);
-title('Heat noise')
-grid on;
+if (specific_plots==1)
+    figure;
+    plot(rad2deg(angs), y, yplot);
+    title('Heat noise')
+    grid on;
+end
 
 heatnoisenorm = y ./ max(y);
 
 heatnoisemeantheta1 = mean(transpose(ltheta1));
 heatnoisemeantheta2 = mean(transpose(ltheta2));
 
-heatnoisesigmasqrtheta1 = 1/(total-1) * sum((ltheta1-heatnoisemeantheta1).^2);
-heatnoisesigmasqrtheta2 = 1/(total-1) * sum((ltheta2-heatnoisemeantheta2).^2);
+heatnoisedeltatheta1 = sqrt(1/(total-1) * sum((ltheta1-heatnoisemeantheta1).^2));
+heatnoisedeltatheta2 = sqrt(1/(total-1) * sum((ltheta2-heatnoisemeantheta2).^2));

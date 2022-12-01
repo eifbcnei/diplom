@@ -49,15 +49,16 @@ for q = 1:total
     ltheta2(q) = rtheta(2);
 end
 y = y / total;
-figure;
-plot(rad2deg(angs), y, yplot);
-title('Capon')
-grid on;
-
+if (specific_plots==1)
+    figure;
+    plot(rad2deg(angs), y, yplot);
+    title('Capon')
+    grid on;
+end
 caponnorm = y ./ max(y);
 
 caponmeantheta1 = mean(transpose(ltheta1));
 caponmeantheta2 = mean(transpose(ltheta2));
 
-caponsigmasqrtheta1 = 1/(total-1) * sum((ltheta1-caponmeantheta1).^2);
-caponsigmasqrtheta2 = 1/(total-1) * sum((ltheta2-caponmeantheta2).^2);
+capondeltatheta1 = sqrt(1/(total-1) * sum((ltheta1-caponmeantheta1).^2));
+capondeltatheta2 = sqrt(1/(total-1) * sum((ltheta2-caponmeantheta2).^2));

@@ -50,15 +50,17 @@ for q = 1:total
     end
 end
 y = y / total;
-figure;
-plot(rad2deg(angs), y, yplot);
-title('Fourier')
-grid on;
+if (specific_plots==1)
+    figure;
+    plot(rad2deg(angs), y, yplot);
+    title('Fourier')
+    grid on;
+end
 
 fouriernorm = y ./ max(y);
 
 fouriermeantheta1 = mean(transpose(ltheta1));
 fouriermeantheta2 = mean(transpose(ltheta2));
 
-fouriersigmasqrtheta1 = 1/(total-1) * sum((ltheta1-fouriermeantheta1).^2);
-fouriersigmasqrtheta2 = 1/(total-1) * sum((ltheta2-fouriermeantheta2).^2);
+fourierdeltatheta1 = sqrt(1/(total-1) * sum((ltheta1-fouriermeantheta1).^2));
+fourierdeltatheta2 = sqrt(1/(total-1) * sum((ltheta2-fouriermeantheta2).^2))
