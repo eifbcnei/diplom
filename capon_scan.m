@@ -5,7 +5,7 @@ threshold = 40;
 y = zeros([length(angs), 1]);
 
 for q = 1:total
-    logger = log_progress(q, logger, total);
+    logger = log_progress(q, logger, total, logging);
     for i = 1:l
         a1 = (v1 / 2)^0.5 * (normrnd(0,sigma)+normrnd(0,sigma)*1j);
         a2 = (v2 / 2)^0.5 * (normrnd(0,sigma)+normrnd(0,sigma)*1j);

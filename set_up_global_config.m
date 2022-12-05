@@ -1,7 +1,7 @@
 n = 10;
 dlambda = 0.5;
 num_tgt = 2;
-ang1 = -5;
+ang1 = -10;
 ang2 = -ang1;
 theta1 = deg2rad(ang1);
 theta2 = deg2rad(ang2);
@@ -14,6 +14,7 @@ total = 100;
 specific_plots = 0;
 rng default;
 
+logging = 0;
 fouriervalid = 1;
 logger = '';
 yplot = 'b-';

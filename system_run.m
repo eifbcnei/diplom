@@ -7,5 +7,5 @@ run('capon_scan.m')
 logger = '';
 disp('Heat noise')
 run('heat_noise_scan.m')
-%run('global_sandbox.m')
+run('global_sandbox.m')
 run('print_results.m')
