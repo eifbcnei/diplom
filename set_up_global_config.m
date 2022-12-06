@@ -9,9 +9,10 @@ v = 5/n;
 v1=v;v2=v;
 sigma = 1;
 l = 30;
-angs = deg2rad(-30:0.01:30);
+angs = deg2rad(-30:0.1:30);
 total = 100;
 specific_plots = 0;
+specific_params = 0;
 rng default;
 
 logging = 0;

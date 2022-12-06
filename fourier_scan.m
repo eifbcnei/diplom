@@ -59,8 +59,10 @@ end
 
 fouriernorm = y ./ max(y);
 
-fouriermeantheta1 = mean(transpose(ltheta1));
-fouriermeantheta2 = mean(transpose(ltheta2));
+if (specific_params==1)
+    fouriermeantheta1 = mean(transpose(ltheta1));
+    fouriermeantheta2 = mean(transpose(ltheta2));
 
-fourierdeltatheta1 = sqrt(1/(total-1) * sum((ltheta1-fouriermeantheta1).^2));
-fourierdeltatheta2 = sqrt(1/(total-1) * sum((ltheta2-fouriermeantheta2).^2));
+    fourierdeltatheta1 = sqrt(1/(total-1) * sum((ltheta1-fouriermeantheta1).^2));
+    fourierdeltatheta2 = sqrt(1/(total-1) * sum((ltheta2-fouriermeantheta2).^2));
+end

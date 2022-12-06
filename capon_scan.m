@@ -57,8 +57,10 @@ if (specific_plots==1)
 end
 caponnorm = y ./ max(y);
 
-caponmeantheta1 = mean(transpose(ltheta1));
-caponmeantheta2 = mean(transpose(ltheta2));
+if (specific_params==1)
+    caponmeantheta1 = mean(transpose(ltheta1));
+    caponmeantheta2 = mean(transpose(ltheta2));
 
-capondeltatheta1 = sqrt(1/(total-1) * sum((ltheta1-caponmeantheta1).^2));
-capondeltatheta2 = sqrt(1/(total-1) * sum((ltheta2-caponmeantheta2).^2));
+    capondeltatheta1 = sqrt(1/(total-1) * sum((ltheta1-caponmeantheta1).^2));
+    capondeltatheta2 = sqrt(1/(total-1) * sum((ltheta2-caponmeantheta2).^2));
+end
